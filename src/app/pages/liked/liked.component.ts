@@ -15,7 +15,6 @@ export class LikedComponent implements OnInit {
   ngOnInit() {
     this.movieStore.$movies
       .subscribe(data => {
-          console.log(data);
           this.movies = data;
         }
       );

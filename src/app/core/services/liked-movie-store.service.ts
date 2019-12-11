@@ -41,7 +41,6 @@ export class LikedMovieStoreService {
   }
 
   public removeMovieFromLiked(removedMovie: IMovie): void {
-    console.log(removedMovie);
     this.movies = this.movies.filter(movie => movie.idIMDB !== removedMovie.idIMDB);
     this.setLikedMoviesToLocalStorage(this.movies);
   }

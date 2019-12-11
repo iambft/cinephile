@@ -29,7 +29,6 @@ export class TopListComponent implements OnInit {
   }
 
   public setLike([status, movie]): void {
-    console.log(status, movie);
     if (status) {
       this.movieStore.addMovieToLiked(movie);
     } else {
