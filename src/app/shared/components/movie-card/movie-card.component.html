@@ -25,8 +25,8 @@
   </div>
   <div class="like-button-holder">
     <button mat-icon-button
-            [color]="liked"
-            (click)="setLiked(liked)"
+            [color]="likedColor"
+            (click)="setLike(likedStatus, movie)"
             aria-label="Example icon-button with a heart icon">
       <mat-icon>favorite</mat-icon>
     </button>

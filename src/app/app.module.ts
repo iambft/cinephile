@@ -4,7 +4,7 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './core/header/header.component';
-import { MoveCardComponent } from './shared/components/move-card/move-card.component';
+import { MovieCardComponent } from './shared/components/movie-card/movie-card.component';
 import { ChartComponent } from './pages/chart/chart.component';
 import { TopListComponent } from './pages/top-list/top-list.component';
 import { LikedComponent } from './pages/liked/liked.component';
@@ -19,7 +19,7 @@ import { LoadingComponent } from './shared/components/loading/loading.component'
   declarations: [
     AppComponent,
     HeaderComponent,
-    MoveCardComponent,
+    MovieCardComponent,
     ChartComponent,
     TopListComponent,
     LikedComponent,

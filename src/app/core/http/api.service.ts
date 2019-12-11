@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import {Observable} from 'rxjs';
 import {map} from 'rxjs/operators';
 import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
+import * as _ from 'lodash';
+import {IMovie} from '../models/movie.model';
 
 const endpoint = 'https://www.myapifilms.com/';
 const token = '1a829fc2-bb62-4e96-b6cb-ddf49ebc6039';
@@ -23,11 +25,11 @@ export class ApiService {
     return response || { };
   }
 
-  private extractMovies(data: any): object[] {
-    return data.data.movies || [];
+  private extractMovies(data: any): IMovie[] {
+    return _.get(data, 'data.movies', []);
   }
 
-  public getTopMovies(full = false): Observable<any> {
+  public getTopMovies(full = false): Observable<IMovie[]> {
     const isFull = full ? '1' : '0';
     const httpParams = {
       params: new HttpParams()

@@ -1,1 +1,7 @@
-<p>liked works!</p>
+<section class="liked-list-component">
+  <h3>My choice</h3>
+  <app-movie-card *ngFor="let movie of movies"
+                  [movie] = 'movie'
+                  (setLikeMovie)="removeFromLiked($event)"></app-movie-card>
+  <div *ngIf="!movies.length"><strong>You have not chosen any movie yet</strong></div>
+</section>

@@ -10,7 +10,6 @@ import * as _ from 'lodash';
   styleUrls: ['./chart.component.scss']
 })
 export class ChartComponent implements OnInit {
-  public movies: any;
   public loading: boolean;
 
   // Pie chart

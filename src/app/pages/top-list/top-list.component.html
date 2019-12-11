@@ -1,5 +1,7 @@
 <app-loading [show]="loading"></app-loading>
 <section *ngIf="!loading" class="top-list-component">
   <h3>Top 20</h3>
-  <app-move-card *ngFor="let movie of movies" [movie] = 'movie'></app-move-card>
+  <app-movie-card *ngFor="let movie of movies"
+                  [movie] = 'movie'
+                  (setLikeMovie)="setLike($event)"></app-movie-card>
 </section>
