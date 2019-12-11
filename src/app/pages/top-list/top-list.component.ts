@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, HostBinding, OnInit} from '@angular/core';
+import {ApiService} from '../../core/http/api.service';
 
 @Component({
   selector: 'app-top-list',
@@ -6,10 +7,21 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./top-list.component.scss']
 })
 export class TopListComponent implements OnInit {
+  public movies: {}[];
+  public loading: boolean;
 
-  constructor() { }
+  constructor(public api: ApiService) { }
 
   ngOnInit() {
+    const isFull = true;
+    this.loading = true;
+    this.api.getTopMovies(isFull)
+      .subscribe(movies => {
+        this.movies = movies || [];
+      },
+        error => {},
+        () => {
+        this.loading = false;
+        });
   }
-
 }

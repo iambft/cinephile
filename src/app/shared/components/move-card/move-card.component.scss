@@ -1,0 +1,25 @@
+.movie-card {
+  display: flex;
+  position: relative;
+  border: 1px solid black;
+  //max-width: 1000px;
+  //margin: 10px auto;
+
+  .img-holder {
+    padding: 5px;
+  }
+
+  .description-holder {
+    padding: 5px 10px;
+
+    p {
+      margin: 0.5em 0;
+    }
+  }
+
+  .like-button-holder {
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
+}
