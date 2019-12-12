@@ -28,7 +28,7 @@ export class TopListComponent implements OnInit {
         });
   }
 
-  public setLike([status, movie]): void {
+  public setLike([status, movie]: [boolean, IMovie]): void {
     if (status) {
       this.movieStore.addMovieToLiked(movie);
     } else {

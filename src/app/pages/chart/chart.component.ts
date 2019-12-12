@@ -33,7 +33,7 @@ export class ChartComponent implements OnInit {
       .subscribe(movies => {
         const years = _.map(movies, movie => movie.year);
         const gropedYears = _.groupBy(years, year => year.slice(0, -1));
-        this.pieChartLabels = _.map(_.keys(gropedYears),  year => year + 'x');
+        this.pieChartLabels = _.map(_.keys(gropedYears),  year => year + 'Ox');
         this.pieChartData = _.map(_.values(gropedYears), yearsArr => yearsArr.length);
         this.loading = false;
       });

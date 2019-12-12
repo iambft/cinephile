@@ -14,6 +14,8 @@ import {MatButtonModule, MatIconModule, MatProgressSpinnerModule, MatToolbarModu
 import { HttpClientModule } from '@angular/common/http';
 import {ChartsModule} from 'ng2-charts';
 import { LoadingComponent } from './shared/components/loading/loading.component';
+import {ToastrModule} from 'ngx-toastr';
+import {CommonModule} from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -27,6 +29,7 @@ import { LoadingComponent } from './shared/components/loading/loading.component'
     LoadingComponent
   ],
   imports: [
+    CommonModule,
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
@@ -35,7 +38,8 @@ import { LoadingComponent } from './shared/components/loading/loading.component'
     MatButtonModule,
     MatIconModule,
     MatProgressSpinnerModule,
-    ChartsModule
+    ChartsModule,
+    ToastrModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

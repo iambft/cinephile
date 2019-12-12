@@ -3,6 +3,7 @@ import {ApiService} from '../../../core/http/api.service';
 import {IMovie} from '../../../core/models/movie.model';
 import {LikedMovieStoreService} from '../../../core/services/liked-movie-store.service';
 import * as _ from 'lodash';
+import {ToastrService} from 'ngx-toastr';
 
 @Component({
   selector: 'app-movie-card',
@@ -15,10 +16,13 @@ export class MovieCardComponent implements OnInit {
   @Input() movie: IMovie;
   @Output() setLikeMovie = new EventEmitter();
 
+  readonly IMDBPath = 'https://www.imdb.com/name/';
   public likedColor: string;
   public likedStatus: boolean;
 
-  constructor(public api: ApiService, public movieStore: LikedMovieStoreService) {}
+  constructor(public api: ApiService,
+              public movieStore: LikedMovieStoreService,
+              private toastr: ToastrService) {}
 
   ngOnInit() {
     const idIMDB = this.movie.idIMDB;
@@ -28,7 +32,7 @@ export class MovieCardComponent implements OnInit {
   }
 
   public openDirectorPage(directorId: string): void {
-    window.open(`https://www.imdb.com/name/${directorId}/`);
+    window.open(`${this.IMDBPath}${directorId}/`);
   }
 
   public setLike(oldStatus: boolean, item: IMovie): void {
@@ -42,10 +46,18 @@ export class MovieCardComponent implements OnInit {
     this.likedColor = status ? 'warn' : '';
   }
 
-  public showTrailer(title: string): void {
+  public getTrailer(title: string): void {
     this.api.getTrailer(title)
       .subscribe(data => {
-        alert('do not work yet');
+        this.showTrailer(data);
       });
+  }
+
+  public showTrailer(message): void {
+    console.log(message);
+    if (message.error) {
+      this.toastr.info(`Code: ${message.error.code}`, `Message: ${message.error.message}`);
+      return;
+    }
   }
 }

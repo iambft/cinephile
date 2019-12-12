@@ -20,7 +20,7 @@ export class LikedComponent implements OnInit {
       );
   }
 
-  public removeFromLiked([status, movie]): void {
+  public removeFromLiked([status, movie]: [boolean, IMovie]): void {
     if (!status) {
       this.movieStore.removeMovieFromLiked(movie);
     }
