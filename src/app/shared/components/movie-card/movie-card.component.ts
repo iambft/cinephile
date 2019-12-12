@@ -1,9 +1,10 @@
-import {Component, EventEmitter, HostBinding, Input, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, HostBinding, Inject, Input, OnInit, Output} from '@angular/core';
 import {ApiService} from '../../../core/http/api.service';
 import {IMovie} from '../../../core/models/movie.model';
 import {LikedMovieStoreService} from '../../../core/services/liked-movie-store.service';
 import * as _ from 'lodash';
 import {ToastrService} from 'ngx-toastr';
+import {APP_CONFIG, IAppConfig} from '../../../app.config';
 
 @Component({
   selector: 'app-movie-card',
@@ -16,13 +17,13 @@ export class MovieCardComponent implements OnInit {
   @Input() movie: IMovie;
   @Output() setLikeMovie = new EventEmitter();
 
-  readonly IMDBPath = 'https://www.imdb.com/name/';
   public likedColor: string;
   public likedStatus: boolean;
 
   constructor(public api: ApiService,
               public movieStore: LikedMovieStoreService,
-              private toastr: ToastrService) {}
+              private toastr: ToastrService,
+              @Inject(APP_CONFIG) private config: IAppConfig) {}
 
   ngOnInit() {
     const idIMDB = this.movie.idIMDB;
@@ -32,7 +33,7 @@ export class MovieCardComponent implements OnInit {
   }
 
   public openDirectorPage(directorId: string): void {
-    window.open(`${this.IMDBPath}${directorId}/`);
+    window.open(`${this.config.IMDBPath}${directorId}/`);
   }
 
   public setLike(oldStatus: boolean, item: IMovie): void {

@@ -16,6 +16,7 @@ import {ChartsModule} from 'ng2-charts';
 import { LoadingComponent } from './shared/components/loading/loading.component';
 import {ToastrModule} from 'ngx-toastr';
 import {CommonModule} from '@angular/common';
+import {APP_CONFIG, AppConfig} from './app.config';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,9 @@ import {CommonModule} from '@angular/common';
     ChartsModule,
     ToastrModule.forRoot()
   ],
-  providers: [],
+  providers: [
+    { provide: APP_CONFIG, useValue: AppConfig }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {

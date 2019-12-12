@@ -1,16 +1,14 @@
-import { Injectable } from '@angular/core';
+import {Inject, Injectable} from '@angular/core';
 import {Observable} from 'rxjs';
 import {map} from 'rxjs/operators';
 import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 import * as _ from 'lodash';
 import {IMovie, Movie} from '../models/movie.model';
+import {APP_CONFIG, IAppConfig} from '../../app.config';
 
-const endpoint = 'https://www.myapifilms.com/';
-const token = '1a829fc2-bb62-4e96-b6cb-ddf49ebc6039';
 const httpOptions = {
   headers: new HttpHeaders({
-    'Content-Type':  'application/json',
-    'Access-Control-Allow-Origin' : '*'
+    'Content-Type':  'application/json'
   }),
 };
 
@@ -20,7 +18,8 @@ const httpOptions = {
 
 export class ApiService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient,
+              @Inject(APP_CONFIG) private config: IAppConfig) { }
 
   private extractData(response: Response): object {
     return response || { };
@@ -37,9 +36,9 @@ export class ApiService {
         .set('end', '20')
         .set('format', 'json')
         .set('data', isFull)
-        .set('token', token)
+        .set('token', this.config.endpointToken)
     };
-    return this.http.get(`${endpoint}imdb/top`, {
+    return this.http.get(`${this.config.apiEndpoint}imdb/top`, {
       ...httpOptions,
       ...httpParams
     }).pipe(
@@ -54,10 +53,10 @@ export class ApiService {
         .set('count', '8')
         .set('credit', '')
         .set('format', 'json')
-        .set('token', token)
+        .set('token', this.config.endpointToken)
         .set('film', filmTitle)
     };
-    return this.http.get(`${endpoint}/trailerAddict/taapi`, {
+    return this.http.get(`${this.config.apiEndpoint}/trailerAddict/taapi`, {
       ...httpOptions,
       ...httpParams
     }).pipe(
