@@ -9,7 +9,7 @@ const routes: Routes = [
   { path: 'top-list', component: TopListComponent },
   { path: 'chart', component: ChartComponent },
   { path: 'my-choice', component: LikedComponent },
-  { path: '', redirectTo: 'main', pathMatch: 'full' },
+  { path: '', redirectTo: 'top-list', pathMatch: 'full' },
   { path: '**', component: PageNotFoundComponent }
 ];
 
