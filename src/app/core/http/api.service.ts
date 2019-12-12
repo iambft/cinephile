@@ -9,7 +9,8 @@ const endpoint = 'https://www.myapifilms.com/';
 const token = '1a829fc2-bb62-4e96-b6cb-ddf49ebc6039';
 const httpOptions = {
   headers: new HttpHeaders({
-    'Content-Type':  'application/json'
+    'Content-Type':  'application/json',
+    'Access-Control-Allow-Origin' : '*'
   }),
 };
 
