@@ -409,7 +409,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<section class=\"movie-card\">\n  <div class=\"img-holder\">\n    <img [src]=\"movie.urlPoster\" height=\"268\" width=\"182\" alt=\"\">\n  </div>\n  <div class=\"description-holder\">\n    <h3> {{ movie.title }}</h3>\n    <p> year  <strong>{{ movie.year }}</strong></p>\n    <p> IMDB rating <strong>{{ movie.rating }}</strong></p>\n    <p> genre <strong>\n      <span *ngFor=\"let genre of movie.genres; let last = last\"> {{ genre }}\n      <span *ngIf=\"!last\">,</span></span></strong></p>\n    <p> country\n      <strong>\n        <span *ngFor=\"let country of movie.countries; let last = last\"> {{ country }}\n        <span *ngIf=\"!last\">,</span></span></strong> </p>\n    <p> director\n      <strong>\n        <span *ngFor=\"let director of movie.directors; let last = last\">\n        <a routerLink=\".\" (click)=\"openDirectorPage(director.id)\">{{ director.name }} </a>\n        <span *ngIf=\"!last\">,</span>\n      </span></strong></p>\n    <button mat-raised-button\n            color=\"primary\"\n            (click)=\"showTrailer(movie.title)\">Trailer</button>\n  </div>\n  <div class=\"like-button-holder\">\n    <button mat-icon-button\n            [color]=\"likedColor\"\n            (click)=\"setLike(likedStatus, movie)\"\n            aria-label=\"Example icon-button with a heart icon\">\n      <mat-icon>favorite</mat-icon>\n    </button>\n  </div>\n</section>\n");
+/* harmony default export */ __webpack_exports__["default"] = ("<section class=\"movie-card\">\n  <div class=\"img-holder\">\n    <img [src]=\"movie.urlPoster\" height=\"268\" width=\"182\" alt=\"\">\n  </div>\n  <div class=\"description-holder\">\n    <h3> {{ movie.title }}</h3>\n    <p> year  <strong>{{ movie.year }}</strong></p>\n    <p> IMDB rating <strong>{{ movie.rating }}</strong></p>\n    <p> genre <strong>\n      <span *ngFor=\"let genre of movie.genres; let last = last\"> {{ genre }}\n      <span *ngIf=\"!last\">,</span></span></strong></p>\n    <p> country\n      <strong>\n        <span *ngFor=\"let country of movie.countries; let last = last\"> {{ country }}\n        <span *ngIf=\"!last\">,</span></span></strong> </p>\n    <p> director\n      <strong>\n        <span *ngFor=\"let director of movie.directors; let last = last\">\n        <a routerLink=\".\" (click)=\"openDirectorPage(director.id)\">{{ director.name }} </a>\n        <span *ngIf=\"!last\">,</span>\n      </span></strong></p>\n    <button mat-raised-button\n            color=\"primary\"\n            (click)=\"getTrailer(movie.title)\">Trailer</button>\n  </div>\n  <div class=\"like-button-holder\">\n    <button mat-icon-button\n            [color]=\"likedColor\"\n            (click)=\"setLike(likedStatus, movie)\"\n            aria-label=\"Example icon-button with a heart icon\">\n      <mat-icon>favorite</mat-icon>\n    </button>\n  </div>\n</section>\n");
 
 /***/ }),
 
@@ -670,7 +670,7 @@ const routes = [
     { path: 'top-list', component: _pages_top_list_top_list_component__WEBPACK_IMPORTED_MODULE_5__["TopListComponent"] },
     { path: 'chart', component: _pages_chart_chart_component__WEBPACK_IMPORTED_MODULE_6__["ChartComponent"] },
     { path: 'my-choice', component: _pages_liked_liked_component__WEBPACK_IMPORTED_MODULE_4__["LikedComponent"] },
-    { path: '', redirectTo: 'main', pathMatch: 'full' },
+    { path: '', redirectTo: 'top-list', pathMatch: 'full' },
     { path: '**', component: _pages_page_not_found_page_not_found_component__WEBPACK_IMPORTED_MODULE_3__["PageNotFoundComponent"] }
 ];
 let AppRoutingModule = class AppRoutingModule {
@@ -756,6 +756,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm2015/http.js");
 /* harmony import */ var ng2_charts__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ng2-charts */ "./node_modules/ng2-charts/fesm2015/ng2-charts.js");
 /* harmony import */ var _shared_components_loading_loading_component__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./shared/components/loading/loading.component */ "./src/app/shared/components/loading/loading.component.ts");
+/* harmony import */ var ngx_toastr__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ngx-toastr */ "./node_modules/ngx-toastr/fesm2015/ngx-toastr.js");
+/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! @angular/common */ "./node_modules/@angular/common/fesm2015/common.js");
+
+
 
 
 
@@ -787,6 +791,7 @@ AppModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
             _shared_components_loading_loading_component__WEBPACK_IMPORTED_MODULE_15__["LoadingComponent"]
         ],
         imports: [
+            _angular_common__WEBPACK_IMPORTED_MODULE_17__["CommonModule"],
             _angular_platform_browser__WEBPACK_IMPORTED_MODULE_1__["BrowserModule"],
             _angular_common_http__WEBPACK_IMPORTED_MODULE_13__["HttpClientModule"],
             _app_routing_module__WEBPACK_IMPORTED_MODULE_3__["AppRoutingModule"],
@@ -795,7 +800,8 @@ AppModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
             _angular_material__WEBPACK_IMPORTED_MODULE_12__["MatButtonModule"],
             _angular_material__WEBPACK_IMPORTED_MODULE_12__["MatIconModule"],
             _angular_material__WEBPACK_IMPORTED_MODULE_12__["MatProgressSpinnerModule"],
-            ng2_charts__WEBPACK_IMPORTED_MODULE_14__["ChartsModule"]
+            ng2_charts__WEBPACK_IMPORTED_MODULE_14__["ChartsModule"],
+            ngx_toastr__WEBPACK_IMPORTED_MODULE_16__["ToastrModule"].forRoot()
         ],
         providers: [],
         bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_4__["AppComponent"]]
@@ -866,6 +872,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm2015/http.js");
 /* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
 /* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _models_movie_model__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../models/movie.model */ "./src/app/core/models/movie.model.ts");
+
 
 
 
@@ -875,7 +883,8 @@ const endpoint = 'https://www.myapifilms.com/';
 const token = '1a829fc2-bb62-4e96-b6cb-ddf49ebc6039';
 const httpOptions = {
     headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpHeaders"]({
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*'
     }),
 };
 let ApiService = class ApiService {
@@ -897,7 +906,7 @@ let ApiService = class ApiService {
                 .set('data', isFull)
                 .set('token', token)
         };
-        return this.http.get(`${endpoint}imdb/top`, Object.assign({}, httpOptions, httpParams)).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["map"])(this.extractData), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["map"])(this.extractMovies));
+        return this.http.get(`${endpoint}imdb/top`, Object.assign({}, httpOptions, httpParams)).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["map"])(this.extractData), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["map"])(this.extractMovies), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["map"])(data => data.map((movie) => new _models_movie_model__WEBPACK_IMPORTED_MODULE_5__["Movie"]().deserialize(movie))));
     }
     getTrailer(filmTitle) {
         const httpParams = {
@@ -920,6 +929,30 @@ ApiService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     })
 ], ApiService);
 
+
+
+/***/ }),
+
+/***/ "./src/app/core/models/movie.model.ts":
+/*!********************************************!*\
+  !*** ./src/app/core/models/movie.model.ts ***!
+  \********************************************/
+/*! exports provided: Movie */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Movie", function() { return Movie; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+
+class Movie {
+    constructor() { }
+    deserialize(input) {
+        // noinspection TypeScriptValidateTypes
+        Object.assign(this, input);
+        return this;
+    }
+}
 
 
 /***/ }),
@@ -1039,7 +1072,7 @@ let ChartComponent = class ChartComponent {
             .subscribe(movies => {
             const years = lodash__WEBPACK_IMPORTED_MODULE_4__["map"](movies, movie => movie.year);
             const gropedYears = lodash__WEBPACK_IMPORTED_MODULE_4__["groupBy"](years, year => year.slice(0, -1));
-            this.pieChartLabels = lodash__WEBPACK_IMPORTED_MODULE_4__["map"](lodash__WEBPACK_IMPORTED_MODULE_4__["keys"](gropedYears), year => year + 'x');
+            this.pieChartLabels = lodash__WEBPACK_IMPORTED_MODULE_4__["map"](lodash__WEBPACK_IMPORTED_MODULE_4__["keys"](gropedYears), year => year + 'Ox');
             this.pieChartData = lodash__WEBPACK_IMPORTED_MODULE_4__["map"](lodash__WEBPACK_IMPORTED_MODULE_4__["values"](gropedYears), yearsArr => yearsArr.length);
             this.loading = false;
         });
@@ -1311,17 +1344,21 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _core_services_liked_movie_store_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../core/services/liked-movie-store.service */ "./src/app/core/services/liked-movie-store.service.ts");
 /* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
 /* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var ngx_toastr__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ngx-toastr */ "./node_modules/ngx-toastr/fesm2015/ngx-toastr.js");
+
 
 
 
 
 
 let MovieCardComponent = class MovieCardComponent {
-    constructor(api, movieStore) {
+    constructor(api, movieStore, toastr) {
         this.api = api;
         this.movieStore = movieStore;
+        this.toastr = toastr;
         this.movieCardHolder = true;
         this.setLikeMovie = new _angular_core__WEBPACK_IMPORTED_MODULE_1__["EventEmitter"]();
+        this.IMDBPath = 'https://www.imdb.com/name/';
     }
     ngOnInit() {
         const idIMDB = this.movie.idIMDB;
@@ -1330,7 +1367,7 @@ let MovieCardComponent = class MovieCardComponent {
         this.showLike(status);
     }
     openDirectorPage(directorId) {
-        window.open(`https://www.imdb.com/name/${directorId}/`);
+        window.open(`${this.IMDBPath}${directorId}/`);
     }
     setLike(oldStatus, item) {
         const status = !oldStatus;
@@ -1341,16 +1378,24 @@ let MovieCardComponent = class MovieCardComponent {
         this.likedStatus = status;
         this.likedColor = status ? 'warn' : '';
     }
-    showTrailer(title) {
+    getTrailer(title) {
         this.api.getTrailer(title)
             .subscribe(data => {
-            alert('do not work yet');
+            this.showTrailer(data);
         });
+    }
+    showTrailer(message) {
+        console.log(message);
+        if (message.error) {
+            this.toastr.info(`Code: ${message.error.code}`, `Message: ${message.error.message}`);
+            return;
+        }
     }
 };
 MovieCardComponent.ctorParameters = () => [
     { type: _core_http_api_service__WEBPACK_IMPORTED_MODULE_2__["ApiService"] },
-    { type: _core_services_liked_movie_store_service__WEBPACK_IMPORTED_MODULE_3__["LikedMovieStoreService"] }
+    { type: _core_services_liked_movie_store_service__WEBPACK_IMPORTED_MODULE_3__["LikedMovieStoreService"] },
+    { type: ngx_toastr__WEBPACK_IMPORTED_MODULE_5__["ToastrService"] }
 ];
 tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["HostBinding"])('class.movie-card-holder')
