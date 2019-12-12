@@ -3,7 +3,7 @@ import {Observable} from 'rxjs';
 import {map} from 'rxjs/operators';
 import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 import * as _ from 'lodash';
-import {IMovie} from '../models/movie.model';
+import {IMovie, Movie} from '../models/movie.model';
 
 const endpoint = 'https://www.myapifilms.com/';
 const token = '1a829fc2-bb62-4e96-b6cb-ddf49ebc6039';
@@ -44,7 +44,8 @@ export class ApiService {
       ...httpParams
     }).pipe(
       map(this.extractData),
-      map(this.extractMovies));
+      map(this.extractMovies),
+      map(data => data.map((movie: Movie) => new Movie().deserialize(movie))));
   }
 
   public getTrailer(filmTitle: string): Observable<any> {
