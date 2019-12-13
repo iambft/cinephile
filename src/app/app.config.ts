@@ -6,10 +6,12 @@ export interface IAppConfig {
   apiEndpoint: string;
   endpointToken: string;
   IMDBPath: string;
+  mockCORSServer: string;
 }
 
 export const AppConfig: IAppConfig = {
   apiEndpoint: 'https://www.myapifilms.com/',
   endpointToken: '1a829fc2-bb62-4e96-b6cb-ddf49ebc6039',
-  IMDBPath: 'https://www.imdb.com/name/'
+  IMDBPath: 'https://www.imdb.com/name/',
+  mockCORSServer: 'https://api.allorigins.win/get?url='
 };

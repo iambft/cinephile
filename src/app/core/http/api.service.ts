@@ -1,4 +1,4 @@
-import {Inject, Injectable} from '@angular/core';
+import {inject, Inject, Injectable} from '@angular/core';
 import {Observable} from 'rxjs';
 import {map} from 'rxjs/operators';
 import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
@@ -21,7 +21,8 @@ export class ApiService {
   constructor(private http: HttpClient,
               @Inject(APP_CONFIG) private config: IAppConfig) { }
 
-  private extractData(response: Response): object {
+  private extractData(response: Response, sec): object {
+    console.log(response, sec);
     return response || { };
   }
 

@@ -11,12 +11,13 @@ import { LikedComponent } from './pages/liked/liked.component';
 import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatButtonModule, MatIconModule, MatProgressSpinnerModule, MatToolbarModule} from '@angular/material';
-import { HttpClientModule } from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {ChartsModule} from 'ng2-charts';
 import { LoadingComponent } from './shared/components/loading/loading.component';
 import {ToastrModule} from 'ngx-toastr';
 import {CommonModule} from '@angular/common';
 import {APP_CONFIG, AppConfig} from './app.config';
+import {CorsMocker} from './core/interceptors/cors-mocker.interceptor';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import {APP_CONFIG, AppConfig} from './app.config';
     ToastrModule.forRoot()
   ],
   providers: [
-    { provide: APP_CONFIG, useValue: AppConfig }
+    { provide: APP_CONFIG, useValue: AppConfig },
+    {provide: HTTP_INTERCEPTORS, useClass: CorsMocker, multi: true}
   ],
   bootstrap: [AppComponent]
 })
