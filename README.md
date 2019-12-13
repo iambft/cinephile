@@ -1,10 +1,4 @@
-# to see the web page
-
-1.open the browser in w/o CORS mode using the command line:
-`open -n -a /Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --args --user-data-dir="/tmp/chrome_dev_test" --disable-web-security`
-
-2.open the page (https://iambft.github.io/cinephile/cinephile-app/) in the browser w/o CORS
-
+# The web page here (https://iambft.github.io/cinephile/cinephile-app/)
 
 # CinephileApp
 
